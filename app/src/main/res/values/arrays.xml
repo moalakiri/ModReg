@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="roles">
+        <item>Please select role</item>
+        <item>Community Member</item>
+        <item>Local Verifier</item>
+        <item>Council Authority</item>
+        <item>Administrator</item>
+    </string-array>
+</resources>
