@@ -2,9 +2,15 @@
 <resources>
     <string-array name="roles">
         <item>Please select role</item>
-        <item>Community Member</item>
-        <item>Local Verifier</item>
-        <item>Council Authority</item>
-        <item>Administrator</item>
+        <item>Student</item>
+        <item>Tutor</item>
+    </string-array>
+
+    <string-array name="departments">
+        <item>Please select department</item>
+        <item>Artificial Intelligence</item>
+        <item>Business Administration</item>
+        <item>Data Science and Analytics</item>
+        <item>Computer Science</item>
     </string-array>
 </resources>

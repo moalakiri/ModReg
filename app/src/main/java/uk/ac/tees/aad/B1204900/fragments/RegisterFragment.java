@@ -2,6 +2,7 @@ package uk.ac.tees.aad.B1204900.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,7 +26,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import uk.ac.tees.aad.B1204900.MainActivity;
 import uk.ac.tees.aad.B1204900.databinding.FragmentRegisterBinding;
+import uk.ac.tees.aad.B1204900.services.UserAuthService;
 
 public class RegisterFragment extends Fragment {
     FragmentRegisterBinding binding;
@@ -110,17 +113,13 @@ public class RegisterFragment extends Fragment {
                         progressDialog.dismiss();
                         //get user info
                         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                        String email = firebaseUser.getEmail();
+                        //String email = firebaseUser.getEmail();
                         Toast.makeText(getContext(), "Account created\n"+email, Toast.LENGTH_SHORT).show();
+                        firebaseAuth.signInWithEmailAndPassword(email, password);
 
-//                        AuthServiceFactory factory = new AuthServiceFactory(context,binding);
-//
-//                        String role = binding.spRole.getSelectedItem().toString();
-//                        IAuthService authService = factory.getInstance(role);
-//
-//                        if(authService != null){
-//                            authService.register();
-//                        }
+                        UserAuthService authService = new UserAuthService(context,binding);
+
+                        authService.register();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -130,6 +129,27 @@ public class RegisterFragment extends Fragment {
                         progressDialog.dismiss();
                         Toast.makeText(getContext(), "Error : "+e.getMessage(), Toast.LENGTH_LONG).show();
 
+                    }
+                });
+        }
+
+    private void SignIn() {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        //success
+                        Toast.makeText(getContext(), "Successfully signed in", Toast.LENGTH_SHORT).show();
+
+                        startActivity(new Intent(getActivity(), MainActivity.class));
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //failure
+                        progressDialog.dismiss();
+                        Toast.makeText(getContext(), "Error : "+e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

@@ -32,5 +32,6 @@
     <string name="swipe_right_for_login">Swipe Right for Login</string>
     <string name="your_first_name">Your first name</string>
     <string name="your_last_name">Your last name</string>
-    <string name="tag">Towards a better society</string>
+    <string name="tag">Smarter way to enrol </string>
+    <string name="sign_out">Sign Out</string>
 </resources>

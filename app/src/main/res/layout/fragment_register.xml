@@ -16,7 +16,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/indigo_daisy"
-        android:layout_marginTop="60dp"/>
+        android:layout_marginTop="30dp"/>
 
     <TextView
         android:id="@+id/tv_subtitle"
@@ -26,7 +26,7 @@
         android:textSize="17sp"
         android:fontFamily="@font/roboto_regular"
         android:layout_marginStart="25dp"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="20dp"/>
 
     <EditText
         android:id="@+id/et_first_name"
@@ -96,6 +96,16 @@
         android:entries="@array/roles"
         />
 
+    <Spinner
+        android:id="@+id/sp_department"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:entries="@array/departments"
+        />
+
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
@@ -126,7 +136,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1">
 
         <Button
@@ -137,7 +147,7 @@
             android:fontFamily="@font/roboto_regular"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="0dp"
             android:layout_centerInParent="true"
             android:textColor="@android:color/white"
             android:text="@string/register"/>
