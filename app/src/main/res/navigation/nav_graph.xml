@@ -25,4 +25,10 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/CreateCourseFragment"
+        android:name="uk.ac.tees.aad.B1204900.fragments.CreateCourseFragment"
+        android:label="Create Course"
+        tools:layout="@layout/fragment_create_course">
+    </fragment>
 </navigation>

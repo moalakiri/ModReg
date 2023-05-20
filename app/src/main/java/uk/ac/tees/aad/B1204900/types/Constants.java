@@ -7,5 +7,6 @@ public class Constants {
     public static final String userEmail = "Email";
     public static final String Tag = "ModReg";
     public static final String UserRoleTag = "UserRole";
+    public static final String UserDepartmentTag = "Department";
 
 }

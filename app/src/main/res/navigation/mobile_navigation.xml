@@ -22,4 +22,10 @@
         android:name="uk.ac.tees.aad.B1204900.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_create_course"
+        android:name="uk.ac.tees.aad.B1204900.fragments.CreateCourseFragment"
+        android:label="Create Course"
+        tools:layout="@layout/fragment_create_course" />
 </navigation>
