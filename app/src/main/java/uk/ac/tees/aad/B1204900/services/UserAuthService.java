@@ -4,12 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -17,17 +12,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import uk.ac.tees.aad.B1204900.MainActivity;
 import uk.ac.tees.aad.B1204900.contracts.IAuthService;
-import uk.ac.tees.aad.B1204900.databinding.FragmentLoginBinding;
 import uk.ac.tees.aad.B1204900.databinding.FragmentRegisterBinding;
 import uk.ac.tees.aad.B1204900.models.User;
 import uk.ac.tees.aad.B1204900.utilities.ActivityUtil;
 
 public class UserAuthService implements IAuthService {
     FragmentRegisterBinding _binding;
-    FragmentLoginBinding _loginBinding;
     Context _context;
     DatabaseReference _databaseReference;
     Activity _requestingActivity;
@@ -57,6 +49,7 @@ public class UserAuthService implements IAuthService {
                 _databaseReference.child("users").child(firebaseUser.getUid())
                         .setValue(user);
                 Toast.makeText(_context, "Successfully registered", Toast.LENGTH_SHORT).show();
+                ActivityUtil.loadUserData(_context);
 
                 _context.startActivity(new Intent(_context, MainActivity.class));
                 if (_requestingActivity != null) _requestingActivity.finish();
