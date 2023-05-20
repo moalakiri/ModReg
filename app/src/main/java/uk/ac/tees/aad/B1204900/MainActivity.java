@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private Context _context;
-    SharedPreferences sharedPreference;
     TextView txtEmail, txtFullName, txtRole;
 
 
@@ -62,14 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         writeMenuUserProfile();
 
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.nav_create_course);
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-            }
-        });
+        binding.appBarMain.fab.setOnClickListener(view -> navController.navigate(R.id.nav_create_course));
     }
 
     @Override

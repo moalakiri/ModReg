@@ -14,7 +14,7 @@ import android.view.View;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.viewpager2.widget.ViewPager2;
 
-import uk.ac.tees.aad.B1204900.adapaters.AuthenticationPagerAdapter;
+import uk.ac.tees.aad.B1204900.adapters.AuthenticationPagerAdapter;
 import uk.ac.tees.aad.B1204900.databinding.ActivityGuestBinding;
 import uk.ac.tees.aad.B1204900.fragments.LoginFragment;
 import uk.ac.tees.aad.B1204900.fragments.RegisterFragment;
