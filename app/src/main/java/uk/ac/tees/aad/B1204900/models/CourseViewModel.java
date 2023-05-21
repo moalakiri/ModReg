@@ -18,9 +18,7 @@ import java.util.Map;
 public class CourseViewModel extends ViewModel {
     private static MutableLiveData<List<Course>> courses = new MutableLiveData<>();
     public static Map<String, Course> courseMap = new HashMap<>();
-
     public static LiveData<List<Course>> getCourses(){
-        if (courses.getValue() == null){
             FirebaseDatabase.getInstance().getReference("courses")
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -44,7 +42,6 @@ public class CourseViewModel extends ViewModel {
 
                 }
             });
-        }
 
         return courses;
     }
