@@ -58,7 +58,7 @@ public class ActivityUtil {
                         .putString(Constants.userEmail, user.getEmail())
                         .putString(Constants.UserDepartmentTag, user.getDepartment())
                         .putString(Constants.userFullName, user.getFirstName() + " " + user.getLastName())
-                        .apply();
+                        .commit();
             }
 
             @Override

@@ -1,5 +1,7 @@
 package uk.ac.tees.aad.B1204900.adapters;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +18,19 @@ import java.util.List;
 import uk.ac.tees.aad.B1204900.R;
 import uk.ac.tees.aad.B1204900.databinding.RvCourseItemBinding;
 import uk.ac.tees.aad.B1204900.models.Course;
+import uk.ac.tees.aad.B1204900.types.Constants;
 
 public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecyclerViewAdapter.RvCourseViewHolder> {
     private List<Course> courses;
+    SharedPreferences sharedPreference;
 
     @NonNull
     @Override
     public RvCourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RvCourseItemBinding binding = RvCourseItemBinding.inflate(LayoutInflater
                 .from(parent.getContext()), parent, false);
+        sharedPreference = parent.getContext()
+                .getSharedPreferences(Constants.Tag, Context.MODE_PRIVATE);
 
         return new RvCourseViewHolder(binding);
     }
@@ -36,12 +42,13 @@ public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecycl
         holder.tvCourseDepartment.setText(courses.get(position).getDepartment() + " Department");
         holder.tvCourseLecturer.setText("Lectured by "+courses.get(position).getTutorName());
         setDepartmentImage(holder, courses.get(position).getDepartment());
-        holder.btnEnrol.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Successfully Enrolled to Course", Toast.LENGTH_LONG).show();
-            }
-        });
+        if (sharedPreference.getString(Constants.UserRoleTag, "role")
+                .equalsIgnoreCase(Constants.userRoleStudent)){
+            holder.btnEnrol.setOnClickListener(view -> Toast.makeText(view.getContext(), "Successfully Enrolled to Course", Toast.LENGTH_LONG).show());
+        }else{
+            holder.btnEnrol.setVisibility(View.GONE);
+        }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

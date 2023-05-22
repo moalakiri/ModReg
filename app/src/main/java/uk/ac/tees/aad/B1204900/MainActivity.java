@@ -25,12 +25,12 @@ import uk.ac.tees.aad.B1204900.databinding.ActivityMainBinding;
 import uk.ac.tees.aad.B1204900.types.Constants;
 
 public class MainActivity extends AppCompatActivity {
-
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private Context _context;
     TextView txtEmail, txtFullName, txtRole;
 
+    SharedPreferences sharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        sharedPreference = _context
+                .getSharedPreferences(Constants.Tag, Context.MODE_PRIVATE);
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
@@ -61,7 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
         writeMenuUserProfile();
 
-        binding.appBarMain.fab.setOnClickListener(view -> navController.navigate(R.id.nav_create_course));
+        if (sharedPreference.getString(Constants.UserRoleTag, "role")
+                .equalsIgnoreCase(Constants.userRoleTutor))
+        {
+            binding.appBarMain.fab.setOnClickListener(view -> navController.navigate(R.id.nav_create_course));
+        }else{
+            binding.appBarMain.fab.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -96,10 +105,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void writeMenuUserProfile(){
-
-        SharedPreferences sharedPreference = _context
-                .getSharedPreferences(Constants.Tag, Context.MODE_PRIVATE);
-
         txtEmail.setText(sharedPreference.getString(Constants.userEmail, "email"));
         txtFullName.setText(sharedPreference.getString(Constants.userFullName, "fullname"));
         txtRole.setText(sharedPreference.getString(Constants.UserRoleTag, "role"));
