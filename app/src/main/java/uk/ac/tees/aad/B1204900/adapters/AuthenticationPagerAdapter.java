@@ -1,4 +1,4 @@
-package uk.ac.tees.aad.B1204900.adapaters;
+package uk.ac.tees.aad.B1204900.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

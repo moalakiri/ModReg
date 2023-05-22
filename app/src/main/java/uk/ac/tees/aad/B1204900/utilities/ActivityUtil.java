@@ -56,8 +56,9 @@ public class ActivityUtil {
                 sharedPreference.edit()
                         .putString(Constants.UserRoleTag, user.getRole())
                         .putString(Constants.userEmail, user.getEmail())
+                        .putString(Constants.UserDepartmentTag, user.getDepartment())
                         .putString(Constants.userFullName, user.getFirstName() + " " + user.getLastName())
-                        .apply();
+                        .commit();
             }
 
             @Override

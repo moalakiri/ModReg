@@ -25,13 +25,12 @@ import uk.ac.tees.aad.B1204900.databinding.ActivityMainBinding;
 import uk.ac.tees.aad.B1204900.types.Constants;
 
 public class MainActivity extends AppCompatActivity {
-
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private Context _context;
-    SharedPreferences sharedPreference;
     TextView txtEmail, txtFullName, txtRole;
 
+    SharedPreferences sharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,21 +40,19 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        sharedPreference = _context
+                .getSharedPreferences(Constants.Tag, Context.MODE_PRIVATE);
+
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_create_course,
+                R.id.nav_user_profile)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -68,7 +65,13 @@ public class MainActivity extends AppCompatActivity {
 
         writeMenuUserProfile();
 
-
+        if (sharedPreference.getString(Constants.UserRoleTag, "role")
+                .equalsIgnoreCase(Constants.userRoleTutor))
+        {
+            binding.appBarMain.fab.setOnClickListener(view -> navController.navigate(R.id.nav_create_course));
+        }else{
+            binding.appBarMain.fab.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -103,10 +106,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void writeMenuUserProfile(){
-
-        SharedPreferences sharedPreference = _context
-                .getSharedPreferences(Constants.Tag, Context.MODE_PRIVATE);
-
         txtEmail.setText(sharedPreference.getString(Constants.userEmail, "email"));
         txtFullName.setText(sharedPreference.getString(Constants.userFullName, "fullname"));
         txtRole.setText(sharedPreference.getString(Constants.UserRoleTag, "role"));

@@ -85,6 +85,22 @@
         android:background="@drawable/et_custom"
         android:textSize="15sp" />
 
+    <EditText
+        android:id="@+id/et_address"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Your address"
+        android:focusable="false"
+        android:enabled="false"
+        android:allowClickWhenDisabled="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:fontFamily="@font/roboto_regular"
+        android:inputType="text"
+        android:background="@drawable/et_custom"
+        android:textSize="15sp" />
 
     <Spinner
         android:id="@+id/sp_role"
