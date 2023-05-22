@@ -44,18 +44,18 @@ public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecycl
         setDepartmentImage(holder, courses.get(position).getDepartment());
         if (sharedPreference.getString(Constants.UserRoleTag, "role")
                 .equalsIgnoreCase(Constants.userRoleStudent)){
-            holder.btnEnrol.setOnClickListener(view -> Toast.makeText(view.getContext(), "Successfully Enrolled to Course", Toast.LENGTH_LONG).show());
+            holder.btnEnrol.setOnClickListener(view -> Toast.makeText(view.getContext(), "Successfully Enrolled", Toast.LENGTH_LONG).show());
         }else{
             holder.btnEnrol.setVisibility(View.GONE);
         }
 
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Hello ItemView", Toast.LENGTH_LONG).show();
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
     }
 
     @Override
