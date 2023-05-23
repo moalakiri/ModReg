@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
+    android:layout_margin="20dp"
     android:orientation="vertical"
     tools:context=".fragments.UserProfileFragment">
 
@@ -33,10 +33,9 @@
         android:textSize="20dp"
         />
     <TextView
+        android:id="@+id/tvFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chima"
-
         android:textSize="30dp"
         />
 
@@ -48,10 +47,9 @@
         android:textSize="20dp"
         />
     <TextView
+        android:id="@+id/tvDepartment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chima"
-
         android:textSize="30dp"
         />
 
@@ -63,10 +61,9 @@
         android:textSize="20dp"
         />
     <TextView
+        android:id="@+id/tvRole"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Student"
-
         android:textSize="30dp"
         />
 

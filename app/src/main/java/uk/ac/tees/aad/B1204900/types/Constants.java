@@ -8,5 +8,6 @@ public class Constants {
     public static final String Tag = "ModReg";
     public static final String UserRoleTag = "UserRole";
     public static final String UserDepartmentTag = "Department";
+    public static final String UserImageTag = "ImageData";
 
 }
