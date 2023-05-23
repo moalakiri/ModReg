@@ -1,6 +1,7 @@
 package uk.ac.tees.aad.B1204900.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,21 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import uk.ac.tees.aad.B1204900.adapters.CourseRecyclerViewAdapter;
 import uk.ac.tees.aad.B1204900.databinding.FragmentHomeBinding;
 import uk.ac.tees.aad.B1204900.models.Course;
 import uk.ac.tees.aad.B1204900.models.CourseViewModel;
+import uk.ac.tees.aad.B1204900.types.Constants;
+import uk.ac.tees.aad.B1204900.utilities.TinyDB;
 
 public class HomeFragment extends Fragment {
 
@@ -35,11 +45,15 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         binding.rvCourses.setLayoutManager(linearLayoutManager);
-        adapter = new CourseRecyclerViewAdapter();
+        adapter = new CourseRecyclerViewAdapter(getContext());
         binding.rvCourses.setAdapter(adapter);
         binding.rvCourses.addItemDecoration(new DividerItemDecoration(getContext(), linearLayoutManager.getOrientation()));
+        TinyDB tinyDB = new TinyDB(getContext());
 
-        courseViewModel.getCourses().observe(getActivity(), courses -> adapter.setCoursesList(courses));
+        courseViewModel.getCourses().observe(getActivity(), courses -> {
+            adapter.setCoursesList(courses);
+            adapter.setEnrolments( (ArrayList<String>) tinyDB.getListString(Constants.MyEnrolments));
+        });
 
         return root;
     }
@@ -56,4 +70,5 @@ public class HomeFragment extends Fragment {
         courseViewModel.getCourses().observe(getActivity(), courses ->
                 adapter.setCoursesList(courses));
     }
+
 }

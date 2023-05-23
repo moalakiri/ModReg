@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Handler;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -33,6 +34,7 @@ public class GuestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         binding = ActivityGuestBinding.inflate(getLayoutInflater());
         view = binding.getRoot();
