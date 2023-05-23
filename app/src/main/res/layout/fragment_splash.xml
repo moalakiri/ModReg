@@ -3,5 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/modreg_bg_splash"
     tools:context="uk.ac.tees.aad.B1204900.fragments.SplashFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:layout_gravity="center"
+        android:textSize="70sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/indigo_daisy"/>
 </FrameLayout>
