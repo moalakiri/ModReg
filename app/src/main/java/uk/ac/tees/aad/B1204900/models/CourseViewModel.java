@@ -54,11 +54,9 @@ public class CourseViewModel extends AndroidViewModel {
                                             .getString(Constants.userFullName, ""))){
 
                             }else{
-
                                 fbCourses.add(fbCourse);
                                 courseMap.put(fbCourse.getId(), fbCourse);
                             }
-
                         }
                         if (fbCourses.size() > 0)
                             courses.postValue(fbCourses);
