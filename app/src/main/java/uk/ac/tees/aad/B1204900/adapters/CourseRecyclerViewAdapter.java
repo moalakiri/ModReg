@@ -1,8 +1,11 @@
 package uk.ac.tees.aad.B1204900.adapters;
 
+import static uk.ac.tees.aad.B1204900.types.Constants.ARG_COURSE_ID;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,7 +67,6 @@ public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecycl
 
     @Override
     public void onBindViewHolder(@NonNull RvCourseViewHolder holder, int position) {
-
         holder.tvCourseCode.setText(courses.get(position).getCode());
         holder.tvCourseTitle.setText(courses.get(position).getTitle());
         holder.tvCourseDepartment.setText(courses.get(position).getDepartment() + " Department");
@@ -74,11 +78,16 @@ public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecycl
             holder.btnEnrol.setOnClickListener(view -> {
                 addEnrolment(courses.get(position));
                 holder.btnEnrol.setVisibility(View.GONE);
-
             });
         }else{
             holder.btnEnrol.setVisibility(View.GONE);
         }
+
+        NavController navController = Navigation.findNavController(ActivityUtil.getActivity(_context),
+                R.id.nav_host_fragment_content_main);
+        Bundle bundle = new Bundle();
+        bundle.putString(ARG_COURSE_ID, courses.get(position).getId());
+        holder.itemView.setOnClickListener(view -> navController.navigate(R.id.nav_course_detail, bundle));
     }
 
     @Override

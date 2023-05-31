@@ -66,14 +66,6 @@ public class MainActivity extends AppCompatActivity {
         txtRole = txtEmail = binding.navView.getHeaderView(0).findViewById(R.id.txtRole);
 
         writeMenuUserProfile();
-
-        if (sharedPreference.getString(Constants.UserRoleTag, "role")
-                .equalsIgnoreCase(Constants.userRoleTutor))
-        {
-            binding.appBarMain.fab.setOnClickListener(view -> navController.navigate(R.id.nav_create_course));
-        }else{
-            binding.appBarMain.fab.setVisibility(View.GONE);
-        }
     }
 
     @Override

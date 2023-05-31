@@ -22,4 +22,10 @@
         android:name="uk.ac.tees.aad.B1204900.fragments.UserProfileFragment"
         android:label="User Profile"
         tools:layout="@layout/fragment_user_profile" />
+
+    <fragment
+        android:id="@+id/nav_course_detail"
+        android:name="uk.ac.tees.aad.B1204900.fragments.CourseDetailFragment"
+        android:label="Course Detail"
+        tools:layout="@layout/fragment_course_detail" />
 </navigation>

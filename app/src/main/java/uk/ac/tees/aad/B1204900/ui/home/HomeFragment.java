@@ -1,5 +1,7 @@
 package uk.ac.tees.aad.B1204900.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,11 +32,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import uk.ac.tees.aad.B1204900.MainActivity;
+import uk.ac.tees.aad.B1204900.R;
 import uk.ac.tees.aad.B1204900.adapters.CourseRecyclerViewAdapter;
 import uk.ac.tees.aad.B1204900.databinding.FragmentHomeBinding;
 import uk.ac.tees.aad.B1204900.models.Course;
 import uk.ac.tees.aad.B1204900.models.CourseViewModel;
 import uk.ac.tees.aad.B1204900.types.Constants;
+import uk.ac.tees.aad.B1204900.utilities.ActivityUtil;
 import uk.ac.tees.aad.B1204900.utilities.TinyDB;
 
 public class HomeFragment extends Fragment {
@@ -40,19 +46,33 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     CourseRecyclerViewAdapter adapter;
     CourseViewModel courseViewModel;
+    SharedPreferences sharedPreference;
+    Context _context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        _context = getContext();
         courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
+        sharedPreference = _context
+                .getSharedPreferences(Constants.Tag, Context.MODE_PRIVATE);
+
         View root = binding.getRoot();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(_context);
         binding.rvCourses.setLayoutManager(linearLayoutManager);
-        adapter = new CourseRecyclerViewAdapter(getContext());
+        adapter = new CourseRecyclerViewAdapter(_context);
         binding.rvCourses.setAdapter(adapter);
-        binding.rvCourses.addItemDecoration(new DividerItemDecoration(getContext(), linearLayoutManager.getOrientation()));
-        TinyDB tinyDB = new TinyDB(getContext());
+        binding.rvCourses.addItemDecoration(new DividerItemDecoration(_context, linearLayoutManager.getOrientation()));
+        TinyDB tinyDB = new TinyDB(_context);
+
+        if (sharedPreference.getString(Constants.UserRoleTag, "role")
+                .equalsIgnoreCase(Constants.userRoleTutor))
+        {
+            binding.fab.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.nav_create_course));
+        }else{
+            binding.fab.setVisibility(View.GONE);
+        }
 
         courseViewModel.getCourses().observe(getActivity(), courses -> {
 

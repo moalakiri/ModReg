@@ -10,5 +10,6 @@ public class Constants {
     public static final String UserDepartmentTag = "Department";
     public static final String UserImageTag = "ImageData";
     public static final String MyEnrolments = "my_enrolments";
+    public static final String ARG_COURSE_ID = "course_id";
 
 }
