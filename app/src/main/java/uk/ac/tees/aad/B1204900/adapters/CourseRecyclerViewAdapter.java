@@ -113,7 +113,7 @@ public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecycl
     private void setDepartmentImage(RvCourseViewHolder holder, String department){
         switch (department.toLowerCase()){
             case "artificial intelligence":
-            case "data science":
+            case "data science and analytics":
                 holder.imageView.setImageResource(R.drawable.ic_data_science_ai);
                 break;
             case "computer science":

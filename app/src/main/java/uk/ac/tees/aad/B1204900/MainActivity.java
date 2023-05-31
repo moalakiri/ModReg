@@ -112,4 +112,11 @@ public class MainActivity extends AppCompatActivity {
         txtFullName.setText(sharedPreference.getString(Constants.userFullName, "fullname"));
         txtRole.setText(sharedPreference.getString(Constants.UserRoleTag, "role"));
     }
+
+    public void reloadActivity(){
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
 }
