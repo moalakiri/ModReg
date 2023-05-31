@@ -3,6 +3,7 @@ package uk.ac.tees.aad.B1204900.models;
 import android.content.Context;
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -24,7 +25,7 @@ import uk.ac.tees.aad.B1204900.types.Constants;
 
 public class CourseViewModel extends AndroidViewModel {
     static SharedPreferences sharedPreference;
-    Context context;
+    static Context context;
     Application _application;
     private static MutableLiveData<List<Course>> courses = new MutableLiveData<>();
     public static Map<String, Course> courseMap = new HashMap<>();
@@ -61,6 +62,7 @@ public class CourseViewModel extends AndroidViewModel {
                         }
                         if (fbCourses.size() > 0)
                             courses.postValue(fbCourses);
+
                     }
                 }
 

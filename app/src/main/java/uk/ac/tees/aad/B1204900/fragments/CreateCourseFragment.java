@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -92,11 +93,18 @@ public class CreateCourseFragment extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     databaseReference.child("courses").child(course.getId())
-                            .setValue(course);
-                    Toast.makeText(_context, "Successfully registered a new course",
-                            Toast.LENGTH_SHORT).show();
+                            .setValue(course).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(_context, "Successfully registered a new course",
+                                            Toast.LENGTH_SHORT).show();
 
-                    navController.navigate(R.id.nav_home);
+                                    navController.navigate(R.id.nav_home);
+                                    MainActivity mainActivity = (MainActivity)getActivity();
+                                    if (mainActivity != null)
+                                        mainActivity.reloadActivity();
+                                }
+                            });
                 }
 
                 @Override

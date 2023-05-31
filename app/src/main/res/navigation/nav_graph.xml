@@ -5,7 +5,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/CreateCourseFragment">
 
-
     <fragment
         android:id="@+id/CreateCourseFragment"
         android:name="uk.ac.tees.aad.B1204900.fragments.CreateCourseFragment"

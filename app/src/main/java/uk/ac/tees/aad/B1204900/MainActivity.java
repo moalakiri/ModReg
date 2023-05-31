@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
         if (sharedPreference.getString(Constants.UserRoleTag, "role")
                 .equalsIgnoreCase(Constants.userRoleTutor))
         {
-            binding.appBarMain.fab.setOnClickListener(view -> navController.navigate(R.id.nav_create_course));
+            binding.appBarMain.fab.setOnClickListener(view -> Navigation
+                    .findNavController(this, R.id.nav_host_fragment_content_main)
+                    .navigate(R.id.nav_create_course));
         }else{
             binding.appBarMain.fab.setVisibility(View.GONE);
         }
@@ -111,5 +113,12 @@ public class MainActivity extends AppCompatActivity {
         txtEmail.setText(sharedPreference.getString(Constants.userEmail, "email"));
         txtFullName.setText(sharedPreference.getString(Constants.userFullName, "fullname"));
         txtRole.setText(sharedPreference.getString(Constants.UserRoleTag, "role"));
+    }
+
+    public void reloadActivity(){
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 }
