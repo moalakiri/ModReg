@@ -58,7 +58,7 @@ public class CourseMessageRecyclerViewAdapter extends RecyclerView.Adapter<Cours
     public void onBindViewHolder(@NonNull RvCourseViewHolder holder, int position) {
         holder.tvAuthor.setText(messages.get(position).getAuthor());
         holder.tvMessageBody.setText(messages.get(position).getMessage());
-        holder.tvDate.setText(messages.get(position).getMessage());
+        holder.tvDate.setText(messages.get(position).getDateCreated());
     }
 
     @Override
@@ -79,5 +79,10 @@ public class CourseMessageRecyclerViewAdapter extends RecyclerView.Adapter<Cours
 
     public void setMessages(List<CourseMessage> messages) {
         this.messages = messages;
+        this.notifyDataSetChanged();
+    }
+
+    public List<CourseMessage> getMessages() {
+        return messages;
     }
 }

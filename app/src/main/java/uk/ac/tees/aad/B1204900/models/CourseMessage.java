@@ -3,8 +3,7 @@ package uk.ac.tees.aad.B1204900.models;
 import java.util.Date;
 
 public class CourseMessage {
-    private String Id, Message, Author;
-    private Date DateCreated;
+    private String Id, CourseId, Message, Author, DateCreated;
 
     public String getId() {
         return Id;
@@ -30,11 +29,19 @@ public class CourseMessage {
         Author = author;
     }
 
-    public Date getDateCreated() {
+    public String getDateCreated() {
         return DateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(String dateCreated) {
         DateCreated = dateCreated;
+    }
+
+    public String getCourseId() {
+        return CourseId;
+    }
+
+    public void setCourseId(String courseId) {
+        CourseId = courseId;
     }
 }

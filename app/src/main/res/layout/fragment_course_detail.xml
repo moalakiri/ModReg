@@ -81,6 +81,6 @@
         android:layout_marginBottom="16dp"
         app:layout_anchor="@+id/course_detail_scroll_view"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/ic_menu_upload_you_tube" />
+        app:srcCompat="@android:drawable/ic_menu_send" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
