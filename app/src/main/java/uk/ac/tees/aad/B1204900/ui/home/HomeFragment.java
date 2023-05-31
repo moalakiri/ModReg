@@ -66,14 +66,6 @@ public class HomeFragment extends Fragment {
         binding.rvCourses.addItemDecoration(new DividerItemDecoration(_context, linearLayoutManager.getOrientation()));
         TinyDB tinyDB = new TinyDB(_context);
 
-        if (sharedPreference.getString(Constants.UserRoleTag, "role")
-                .equalsIgnoreCase(Constants.userRoleTutor))
-        {
-            binding.fab.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.nav_create_course));
-        }else{
-            binding.fab.setVisibility(View.GONE);
-        }
-
         courseViewModel.getCourses().observe(getActivity(), courses -> {
 
             adapter.setCoursesList(courses);
