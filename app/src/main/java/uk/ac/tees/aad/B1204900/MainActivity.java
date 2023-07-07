@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -102,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
     private void signOut() {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signOut();
+        sharedPreference.edit().clear().apply();
         Intent intent = new Intent(this, GuestActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -117,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void writeMenuUserProfile(){
-        txtEmail.setText(sharedPreference.getString(Constants.userEmail, "email"));
-        txtFullName.setText(sharedPreference.getString(Constants.userFullName, "fullname"));
-        txtRole.setText(sharedPreference.getString(Constants.UserRoleTag, "role"));
+        txtEmail.setText(sharedPreference.getString(Constants.userEmail, ""));
+        txtFullName.setText(sharedPreference.getString(Constants.userFullName, ""));
+        txtRole.setText(sharedPreference.getString(Constants.UserRoleTag, ""));
     }
 
     public void reloadActivity(){
@@ -127,5 +129,11 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         startActivity(getIntent());
         overridePendingTransition(0, 0);
+    }
+
+    @Override
+    protected void onResume() {
+        writeMenuUserProfile();
+        super.onResume();
     }
 }

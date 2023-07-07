@@ -70,6 +70,7 @@ public class CourseDetailFragment extends Fragment {
         }
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
     }
 
     @Override

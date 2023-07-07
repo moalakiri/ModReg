@@ -51,8 +51,8 @@ public class UserAuthService implements IAuthService {
                 Toast.makeText(_context, "Successfully registered", Toast.LENGTH_SHORT).show();
                 ActivityUtil.loadUserData(_context);
 
-                _context.startActivity(new Intent(_context, MainActivity.class));
                 if (_requestingActivity != null) _requestingActivity.finish();
+                _context.startActivity(new Intent(_context, MainActivity.class));
             }
 
             @Override

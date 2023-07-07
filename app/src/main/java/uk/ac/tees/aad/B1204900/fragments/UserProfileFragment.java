@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import uk.ac.tees.aad.B1204900.MainActivity;
 import uk.ac.tees.aad.B1204900.R;
 import uk.ac.tees.aad.B1204900.databinding.FragmentCreateCourseBinding;
 import uk.ac.tees.aad.B1204900.databinding.FragmentUserProfileBinding;
@@ -50,6 +51,7 @@ public class UserProfileFragment extends Fragment {
             Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(cameraIntent, CAMERA_REQUEST);
         });
+
     }
 
     @Override
